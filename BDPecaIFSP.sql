@@ -1,182 +1,183 @@
 /* Lógico_2: */
 
 CREATE TABLE TBFuncao (
-    IDFuncao int PRIMARY KEY,
-    DescricaoFuncao varchar(100),
-    Observacao varchar(max)
+    IDFuncao INT PRIMARY KEY,
+    DescricaoFuncao VARCHAR(100),
+    Observacao VARCHAR(MAX)
 );
 
 CREATE TABLE TBSituacao (
-    IDSituacao int PRIMARY KEY,
-    DescricaoSituacao Varchar(200),
-    Observacao varchar(max)
+    IDSituacao INT PRIMARY KEY,
+    DescricaoSituacao VARCHAR(200),
+    Observacao VARCHAR(MAX)
 );
 
 CREATE TABLE TBFuncionario (
-    COdFuncionario int PRIMARY KEY,
-    DataNascimento Date,
-    DataAdmissao DAte,
-    Sexo varchar(1),
-    CodFuncao int,
-    CodSituacao int
+    COdFuncionario INT PRIMARY KEY,
+    DataNascimento DATE,
+    DataAdmissao DATE,
+    Sexo VARCHAR(1),
+    CodFuncao INT,
+    CodSituacao INT
 );
 
 CREATE TABLE TBProducaoPeca (
-    CodFuncionario int,
-    CodFabricante int,
-    CodProjeto int,
-    CodPeca int,
-    DataInicio Date,
-    DataFim date,
-    CustoDiario decimal(10,2),
-    TempoUsado Time,
-    Quantidade int,
+    CodFuncionario INT,
+    CodFabricante INT,
+    CodProjeto INT,
+    CodPeca INT,
+    DataInicio DATE,
+    DataFim DATE,
+    CustoDiario DECIMAL(10,2),
+    TempoUsado TIME,
+    Quantidade INT,
     PRIMARY KEY (CodFuncionario, CodFabricante, CodProjeto, CodPeca)
 );
 
 CREATE TABLE TBFabricantePeca (
-    CodFabricante int,
-    CodProjeto int,
-    CodPeca int,
-    DataInicio Date,
-    DataFim Date,
-    TempoGastoFabricacao time,
-    CustoFabricacao decimal(10,2),
+    CodFabricante INT,
+    CodProjeto INT,
+    CodPeca INT,
+    DataInicio DATE,
+    DataFim DATE,
+    TempoGastoFabricacao TIME,
+    CustoFabricacao DECIMAL(10,2),
     PRIMARY KEY (CodFabricante, CodProjeto, CodPeca)
 );
 
 CREATE TABLE TBFabricante (
-    CodFabricante int PRIMARY KEY,
-    CNPJ varchar(15),
-    InscricaoEstadual varchar(12),
-    Observacao varchar(max),
-    CodCidade int
+    CodFabricante INT PRIMARY KEY,
+    CNPJ VARCHAR(15),
+    InscricaoEstadual VARCHAR(12),
+    Observacao VARCHAR(MAX),
+    CodCidade INT,
+    IDPessoa INT
 );
 
 CREATE TABLE TBPessoa (
-    IDPessoa int PRIMARY KEY,
-    NomePessoa varchar(50),
-    Endereco varchar(50),
-    Bairro varchar(50),
-    Numero int,
-    Cep varchar(12),
-    CodCidade int
+    IDPessoa INT PRIMARY KEY,
+    NomePessoa VARCHAR(50),
+    Endereco VARCHAR(50),
+    Bairro VARCHAR(50),
+    Numero INT,
+    Cep VARCHAR(12),
+    CodCidade INT
 );
 
 CREATE TABLE TBCidade (
-    IDCidade int PRIMARY KEY,
-    NomeCidade Varchar(50),
-    CodUF varchar(2)
+    IDCidade INT PRIMARY KEY,
+    NomeCidade VARCHAR(50),
+    CodUF VARCHAR(2)
 );
 
 CREATE TABLE TBPeca (
-    IDPeca int PRIMARY KEY,
-    DescricaoPeca Varchar(max),
-    ComposicaoPeca varchar(max),
-    CustoPeca decimal,
-    TempoProducao time,
-    Observacao varchar(max),
-    CodSituacao int
+    IDPeca INT PRIMARY KEY,
+    DescricaoPeca VARCHAR(MAX),
+    ComposicaoPeca VARCHAR(MAX),
+    CustoPeca DECIMAL(10,2),
+    TempoProducao TIME,
+    Observacao VARCHAR(MAX),
+    CodSituacao INT
 );
 
 CREATE TABLE TBSituacaoPeca (
-    IdSituacao int PRIMARY KEY,
-    Descricao varchar(max),
-    DataSituacao Date,
-    Observacao varchar(max)
+    IdSituacao INT PRIMARY KEY,
+    Descricao VARCHAR(MAX),
+    DataSituacao DATE,
+    Observacao VARCHAR(MAX)
 );
 
 CREATE TABLE TBEstado (
-    IDUF varchar(2) PRIMARY KEY,
-    NomeEstado varchar(50)
+    IDUF VARCHAR(2) PRIMARY KEY,
+    NomeEstado VARCHAR(50)
 );
 
 CREATE TABLE TBEngenheiro (
-    CodEngenheiro int PRIMARY KEY,
-    NumeroCrea int,
-    CPF bigint,
-    RG varchar(12),
-    DataNascimento Date,
-    DataFormacao Date,
-    Sexo varchar(1),
-    CodCidade int
+    CodEngenheiro INT PRIMARY KEY,
+    NumeroCrea INT,
+    CPF BIGINT,
+    RG VARCHAR(12),
+    DataNascimento DATE,
+    DataFormacao DATE,
+    Sexo VARCHAR(1),
+    CodCidade INT
 );
 
 CREATE TABLE TBProjeto (
-    IdProjeto int PRIMARY KEY,
-    DescricaoProjeto varchar(max),
-    DataProjeto Date,
-    CustoProjeto decimal(10,2),
-    Observacao varchar(max),
-    CodEngenheiro int
+    IdProjeto INT PRIMARY KEY,
+    DescricaoProjeto VARCHAR(MAX),
+    DataProjeto DATE,
+    CustoProjeto DECIMAL(10,2),
+    Observacao VARCHAR(MAX),
+    CodEngenheiro INT
 );
 
 CREATE TABLE TBProjetoPeca (
-    CodProjeto int,
-    CodPeca int,
-    DataInicio Date,
-    DataFim Date,
-    CustoProjeto decimal(10,20,
-    Observacao Varchar(max),
+    CodProjeto INT,
+    CodPeca INT,
+    DataInicio DATE,
+    DataFim DATE,
+    CustoProjeto DECIMAL(10,2),
+    Observacao VARCHAR(MAX),
     PRIMARY KEY (CodProjeto, CodPeca)
 );
- 
-ALTER TABLE TBFuncionario ADD CONSTRAINT FK_TBFuncionario_2
+
+ALTER TABLE TBFuncionario ADD CONSTRAINT FK_TBFuncionario_Funcao
     FOREIGN KEY (CodFuncao)
     REFERENCES TBFuncao (IDFuncao);
- 
-ALTER TABLE TBFuncionario ADD CONSTRAINT FK_TBFuncionario_3
+
+ALTER TABLE TBFuncionario ADD CONSTRAINT FK_TBFuncionario_Situacao
     FOREIGN KEY (CodSituacao)
     REFERENCES TBSituacao (IDSituacao);
- 
-ALTER TABLE TBProducaoPeca ADD CONSTRAINT FK_TBProducaoPeca_2
+
+ALTER TABLE TBProducaoPeca ADD CONSTRAINT FK_TBProducaoPeca_Funcionario
     FOREIGN KEY (CodFuncionario)
     REFERENCES TBFuncionario (COdFuncionario);
- 
-ALTER TABLE TBProducaoPeca ADD CONSTRAINT FK_TBProducaoPeca_3
+
+ALTER TABLE TBProducaoPeca ADD CONSTRAINT FK_TBProducaoPeca_FabricantePeca
     FOREIGN KEY (CodFabricante, CodProjeto, CodPeca)
     REFERENCES TBFabricantePeca (CodFabricante, CodProjeto, CodPeca);
- 
-ALTER TABLE TBFabricantePeca ADD CONSTRAINT FK_TBFabricantePeca_2
+
+ALTER TABLE TBFabricantePeca ADD CONSTRAINT FK_TBFabricantePeca_Fabricante
     FOREIGN KEY (CodFabricante)
     REFERENCES TBFabricante (CodFabricante);
- 
-ALTER TABLE TBFabricantePeca ADD CONSTRAINT FK_TBFabricantePeca_3
-    FOREIGN KEY (CodProjeto, ???)
-    REFERENCES TBProjetoPeca (CodProjeto, ???);
- 
-ALTER TABLE TBFabricante ADD CONSTRAINT FK_TBFabricante_2
+
+ALTER TABLE TBFabricantePeca ADD CONSTRAINT FK_TBFabricantePeca_ProjetoPeca
+    FOREIGN KEY (CodProjeto, CodPeca) -- Corrected missing column
+    REFERENCES TBProjetoPeca (CodProjeto, CodPeca);
+
+ALTER TABLE TBFabricante ADD CONSTRAINT FK_TBFabricante_Cidade
     FOREIGN KEY (CodCidade)
     REFERENCES TBCidade (IDCidade);
- 
-ALTER TABLE TBPessoa ADD CONSTRAINT FK_TBPessoa_2
-    FOREIGN KEY (CodCidade)
-    REFERENCES TBCidade (IDCidade);
- 
-ALTER TABLE TBPessoa ADD CONSTRAINT FK_TBPessoa_3
+
+ALTER TABLE TBFabricante ADD CONSTRAINT FK_TBFabricante_Pessoa -- New FK for linking to TBPessoa
     FOREIGN KEY (IDPessoa)
-    REFERENCES TBFabricante (CodFabricante);
- 
-ALTER TABLE TBCidade ADD CONSTRAINT FK_TBCidade_2
+    REFERENCES TBPessoa (IDPessoa);
+
+ALTER TABLE TBPessoa ADD CONSTRAINT FK_TBPessoa_Cidade
+    FOREIGN KEY (CodCidade)
+    REFERENCES TBCidade (IDCidade);
+
+ALTER TABLE TBCidade ADD CONSTRAINT FK_TBCidade_Estado
     FOREIGN KEY (CodUF)
     REFERENCES TBEstado (IDUF);
- 
-ALTER TABLE TBPeca ADD CONSTRAINT FK_TBPeca_2
+
+ALTER TABLE TBPeca ADD CONSTRAINT FK_TBPeca_SituacaoPeca
     FOREIGN KEY (CodSituacao)
     REFERENCES TBSituacaoPeca (IdSituacao);
- 
-ALTER TABLE TBEngenheiro ADD CONSTRAINT FK_TBEngenheiro_2
+
+ALTER TABLE TBEngenheiro ADD CONSTRAINT FK_TBEngenheiro_Cidade
     FOREIGN KEY (CodCidade)
     REFERENCES TBCidade (IDCidade);
- 
-ALTER TABLE TBProjeto ADD CONSTRAINT FK_TBProjeto_2
+
+ALTER TABLE TBProjeto ADD CONSTRAINT FK_TBProjeto_Engenheiro
     FOREIGN KEY (CodEngenheiro)
     REFERENCES TBEngenheiro (CodEngenheiro);
- 
-ALTER TABLE TBProjetoPeca ADD CONSTRAINT FK_TBProjetoPeca_2
+
+ALTER TABLE TBProjetoPeca ADD CONSTRAINT FK_TBProjetoPeca_Peca
     FOREIGN KEY (CodPeca)
     REFERENCES TBPeca (IDPeca);
- 
-ALTER TABLE TBProjetoPeca ADD CONSTRAINT FK_TBProjetoPeca_3
+
+ALTER TABLE TBProjetoPeca ADD CONSTRAINT FK_TBProjetoPeca_Projeto
     FOREIGN KEY (CodProjeto)
     REFERENCES TBProjeto (IdProjeto);
